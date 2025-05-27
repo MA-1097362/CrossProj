@@ -1,0 +1,169 @@
+<m-container> <!-- M container used to hold m-card-->
+    <br>
+    <br>
+    <m-card [header]= "'Section Creation'" [subheader]="'Form'">
+    <form class="pure-form pure-form-aligned"  #userForm="ngForm">            
+            <fieldset><!-- Form to register sections-->
+                <div class="pure-control-group">
+                    <label for="courseName"> Course Name </label>
+                    <select required id="courseName" name="courseName" [(ngModel)]="section.name" #courseNameControl="ngModel">
+                        <option value = "CEN333">CEN333</option> <!--Option input used to display available choices instead of inputting (to help with validation)-->
+                        <option value = "CSC201">CSC201</option>
+                        <option value = "CEN330">CEN330</option>
+                        <option value = "CEN201">CEN201</option>
+                   </select>
+                </div>
+
+            <div class="pure-control-group">
+                <label for="instructor"> Instructor </label>
+                <select required id="instructor" name="instructor" [(ngModel)]="section.instructor" #instructorControl="ngModel">
+                    <option value = "Dr. Ghazal">Dr. Ghazal</option>
+                    <option value = "Dr. Khiati">Dr. Khiati</option>
+                    <option value = "Dr. Deif">Dr. Deif</option>
+                    <option value = "Dr. Awad">Dr. Awad</option>
+               </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="sectionNumber"> Section Number </label>
+                <select required id="sectionNumber" name="sectionNumber" [(ngModel)]="section.sectionNumber" #sectionNumberControl="ngModel">
+                    <option value = "1">1</option>
+                    <option value = "2">2</option>
+                    <option value = "3">3</option>
+                    <option value = "4">4</option>
+                    <option value = "5">5</option>
+                    <option value = "6">6</option>
+               </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="capacity"> Capacity </label>
+                <select required id="capacity" name="capacity" [(ngModel)]="section.capacity" #capacityControl="ngModel">
+                    <option value = "Regular">Regular</option>
+                    <option value = "Large">Large</option>
+                    <option value = "Mega">Mega</option>
+               </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="campus"> Campus </label>
+                <select required id="campus" name="campus" [(ngModel)]="section.campus" #campusControl="ngModel">
+                    <option value = "Abu Dhabi">Abu Dhabi</option>
+                    <option value = "Al Ain">Al Ain</option>
+               </select>
+            </div>
+    
+            <div class="pure-control-group">
+                <label for="timeSlot"> Time Slot </label>
+                <select required id="timeSlot" name="timeSlot" [(ngModel)]="section.timeSlot" #courseControl="ngModel">
+                    <option value = "MW 9:00-10:45">MW 9:00-10:45</option>
+                    <option value = "MW 10:55 - 12:40">MW 10:55 - 12:40</option>
+                    <option value = "MW 12:50 - 14:35">MW 12:50 - 14:35</option>
+                    <option value = "MW 15:00 - 16:45">MW 15:00 - 16:45</option>
+                    <option value = "MW 16:55 - 18:40">MW 16:55 - 18:40</option>
+                    <option value = "MW 18:50 - 20:35">MW 18:50 - 20:35</option>
+                    <option value = "MW 20:45 - 22:30">MW 20:45 - 22:30</option>   
+                    <option value = "TR 9:00 - 10:45">TR 9:00 - 10:45</option>
+                    <option value = "TR 10:55 - 12:40">TR 10:55 - 12:40</option>
+                    <option value = "TR 12:50 - 14:35">TR 12:50 - 14:35</option>
+                    <option value = "TR 15:00 - 16:45">TR 15:00 - 16:45</option>
+                    <option value = "TR 16:55 - 18:40">TR 16:55 - 18:40</option>
+                    <option value = "TR 18:50 - 20:35">TR 18:50 - 20:35</option>
+                    <option value = "TR 20:45 - 22:30">TR 20:45 - 22:30</option> 
+               </select>
+            </div>
+    
+            <div class="pure-controls"> <!--Submit form to remote-->
+                <button type="submit" class="pure-button button-ghazal" (click)="registerSection(userForm, 'remote')" [disabled]="userForm.invalid"> Register Section</button>
+
+            </div>
+        </fieldset> 
+      
+        <!--abu dhabi campus sections table-->
+        <div style="display: flex; justify-content: space-between; gap: 20px;">
+            <div style="flex: 1;">
+              <h2>Abu Dhabi Campus Sections</h2>
+              <table class="pure-table pure-table-bordered">
+                <thead>
+                  <tr>
+                    <th>Time Slot</th>
+                    <th>Course Name</th>
+                    <th>Section Number</th>
+                    <th>Capacity</th>
+                    <th>Instructor</th>
+                    <th>Delete Section</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let slot of timeSlots">
+                    <td>{{ slot }}</td>
+                    <td>{{ abuDhabiSections[slot]?.name || '-' }}</td>
+                    <td>{{ abuDhabiSections[slot]?.sectionNumber || '-' }}</td>
+                    <td>{{ abuDhabiSections[slot]?.capacity || '-' }}</td>
+                    <td>{{ abuDhabiSections[slot]?.instructor || '-' }}</td>
+                    <td>
+                      <button *ngIf="abuDhabiSections[slot]" class="pure-button button-error"
+                        (click)="deleteSection(slot, 'Abu Dhabi','remote')"><!--delete section button-->
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="flex: 1;">
+              <!--al ain campus sections table-->
+              <h2>Al Ain Campus Sections</h2>
+              <table class="pure-table pure-table-bordered">
+                <thead>
+                  <tr>
+                    <th>Time Slot</th>
+                    <th>Course Name</th>
+                    <th>Section Number</th>
+                    <th>Capacity</th>
+                    <th>Instructor</th>
+                    <th>Delete Section</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let slot of timeSlots">
+                    <td>{{ slot }}</td>
+                    <td>{{ alAinSections[slot]?.name || '-' }}</td>
+                    <td>{{ alAinSections[slot]?.sectionNumber || '-' }}</td>
+                    <td>{{ alAinSections[slot]?.capacity || '-' }}</td>
+                    <td>{{ alAinSections[slot]?.instructor || '-' }}</td>
+                    <td>
+                      <button *ngIf="alAinSections[slot]" class="pure-button button-error"
+                        (click)="deleteSection(slot, 'Al Ain','remote')">
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+        
+        
+    </form>
+
+    <h3>Instructor Course Load</h3>
+<!--Course load table-->
+    <div class="pure-table">
+<table style="width: 50%; margin-top: 20px;">
+  <tr>
+    <th>Instructor</th>
+    <th>Total Sections</th>
+  </tr>
+  <!--ngFor used to fill table and style dynamically-->
+  <tr *ngFor="let instructor of instructors"
+      [style.backgroundColor]="getInstructorRowColor(getInstructorSectionCounts()[instructor])"> <!--string returned from getInstructorSectionCounts() decides background color-->
+    <td>{{ instructor }}</td>
+    <td>{{ getInstructorSectionCounts()[instructor] }}</td><!--Section counts for each instructor-->
+  </tr>
+</table>
+</div>
+</m-card>
+</m-container>
