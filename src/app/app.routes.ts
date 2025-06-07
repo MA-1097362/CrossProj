@@ -7,7 +7,8 @@ import { Feature3Component } from './features/feature3/feature3.component';
 
 export const routes: Routes = [
     {path:'', component:HomeComponent},
-    {path:'feature1', component:Feature1Component},
-    {path:'feature2' , component:Feature2Component},
-    {path:'feature3' , component:Feature3Component}
+    {path:'errortable', component:Feature1Component},
+    {path:'viewandmodifyschedule' , component:Feature2Component},
+    {path:'versionsavingandcomparison' , component:Feature3Component},
+    
 ];

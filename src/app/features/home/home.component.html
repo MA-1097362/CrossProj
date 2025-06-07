@@ -1,8 +1,10 @@
 <m-container>
 <br><br>
 <h1></h1>
-<m-card [header]="'Main Menu'" [subheader]="'Main page navigation'">
-<button class="pure-button" (click)="goToFeature2()">View and Modify Schedule</button>
-</m-card>
-</m-container>
 
+
+<m-container>
+  <br><br><br><br>
+  <m-main-menu [menuitems]="['View and Modify Schedule','Error Table','Version Saving and Comparison']">
+  </m-main-menu>
+</m-container>

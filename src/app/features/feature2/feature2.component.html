@@ -1,9 +1,10 @@
 <m-container> <!-- M container used to hold m-card-->
     <br>
     <br>
-    <m-card [header]= "'Section Creation'" [subheader]="'Form'">
-    <form class="pure-form pure-form-aligned"  #userForm="ngForm">            
-            <fieldset><!-- Form to register sections-->
+    <m-card [header]= "'Section Creation'" [subheader]="''">
+      <br>
+    <form class="pure-form pure-form-aligned"  #userForm="ngForm" >            
+            <fieldset style="width: 300px; margin: 0 auto;"><!-- Form to register sections-->
                 <div class="pure-control-group">
                     <label for="courseName"> Course Name </label>
                     <select required id="courseName" name="courseName" [(ngModel)]="section.name" #courseNameControl="ngModel">
@@ -74,7 +75,7 @@
             </div>
     
             <div class="pure-controls"> <!--Submit form to remote-->
-                <button type="submit" class="pure-button button-ghazal" (click)="registerSection(userForm, 'remote')" [disabled]="userForm.invalid"> Register Section</button>
+                <button type="submit" style="width: 250px; margin: 0 auto;" class="pure-button button-ghazal" (click)="registerSection(userForm, 'remote')" [disabled]="userForm.invalid"> Register Section</button>
 
             </div>
         </fieldset> 
@@ -149,10 +150,10 @@
         
     </form>
 
-    <h3>Instructor Course Load</h3>
+    <h2 style="width: 300px; margin: 0 auto;">Instructor Course Load</h2>
 <!--Course load table-->
-    <div class="pure-table">
-<table style="width: 50%; margin-top: 20px;">
+    <div class="pure-table" style="width: 300px; margin: 0 auto;">
+<table>
   <tr>
     <th>Instructor</th>
     <th>Total Sections</th>

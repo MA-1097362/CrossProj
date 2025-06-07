@@ -59,7 +59,9 @@ export class Feature2Component {
       this.section.timeSlot,
       this.section.campus,
       this.section.instructor
-    );
+    )
+      
+    ;
 
     if (section.campus == "Abu Dhabi") {
       this.abuDhabiSections[section.timeSlot] = section;
@@ -82,7 +84,7 @@ export class Feature2Component {
   }
 
   // Get remote list for feature 2
-  get remoteListOfPatients(){
+  get remoteListOfSections(){
     return this.persistence.getRemoteList();
   }
 
@@ -121,8 +123,11 @@ export class Feature2Component {
   
   // Return color based on calculated load.
   getInstructorRowColor(load: number): string {
-    if (load < 4) return 'green';
-    else if (load == 4) return 'yellow';
-    else return 'red';
+    if (load < 4) 
+      return 'green';
+    else if (load == 4) 
+      return 'yellow';
+    else 
+      return 'red';
   }
 }

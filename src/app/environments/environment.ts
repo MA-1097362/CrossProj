@@ -1,5 +1,5 @@
 export const environment = {
-  apiKey: "AIzaSyAAB28ybXWQAyuYLJxI_Dg2DGbwLtMDYAc",
+  apiKey: "",
   authDomain: "project-5e642.firebaseapp.com",
   projectId: "project-5e642",
   storageBucket: "project-5e642.firebasestorage.app",
